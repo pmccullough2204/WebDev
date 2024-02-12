@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Patrick McCullough Blog Site' });
+  res.render('blogList', { title: 'Blog List' });
 });
 
 module.exports = router;
