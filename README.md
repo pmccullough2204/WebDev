@@ -1,4 +1,5 @@
-# WebDev
+# Patrick's Blogger Application
+
 
 # Running Instructions
 change directory:
