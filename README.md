@@ -1,7 +1,14 @@
 # Patrick's Blogger Application
 
+## Updates
+Lab 2:
+Added Add Blog
+Added List Blog
+Added Index
+Installed Bootstrap navBar
 
-# Running Instructions
+
+## Running Instructions
 change directory:
      $ cd 421
 
