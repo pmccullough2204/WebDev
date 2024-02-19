@@ -33,7 +33,16 @@
             <p class = pageTitle>Blog List</p>
            <p class = intro >Blog List is under construction. Be back soon!</p>
           <div class = "blogList">
-            <p>This where the blog list will go.</p>
+            <h1>Blog Entries</h1>
+            <ul>
+              <% blogs.forEach(function(blog) { %>
+                <li>
+                  <h2><%= blog.blogTitle %></h2>
+                  <p><%= blog.blogText %></p>
+                  <p>Posted on: <%= blog.createdOn.toDateString() %></p>
+                </li>
+              <% }) %>
+            </ul>
           </div>
         </div>
     
