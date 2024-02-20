@@ -9,6 +9,8 @@ var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var blogAddRouter = require('./app_server/routes/blogAdd');
 var blogListRouter = require('./app_server/routes/blogList');
+var blogEditRouter = require ('./app_server/routes/blogEdit.js');
+var blogDeleteRouter = require ('./app_server/routes/blogDelete.js');
 var app = express();
 
 // view engine setup
@@ -23,8 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/blogAdd',blogAddRouter);
-app.use('/blogList',blogListRouter);
+app.use('/blogAdd', blogAddRouter);
+app.use('/blogList', blogListRouter);
+app.use('/blogEdit', blogEditRouter);
+app.use('/blogDelete', blogDeleteRouter);
 
 
 // catch 404 and forward to error handler
