@@ -21,3 +21,9 @@ a {
   font-size: 20px
 }
 
+.blogEntry {
+  padding: 20px;
+  border-style: dashed;
+
+}
+

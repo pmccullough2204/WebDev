@@ -36,11 +36,13 @@
             <h1>Blog Entries</h1>
             <ul>
               <% blogs.forEach(function(blog) { %>
+              <div class = blogEntry>
                 <li>
                   <h2><%= blog.blogTitle %></h2>
                   <p><%= blog.blogText %></p>
                   <p>Posted on: <%= blog.createdOn.toDateString() %></p>
                 </li>
+              </div>
               <% }) %>
             </ul>
           </div>
