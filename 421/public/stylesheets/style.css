@@ -21,9 +21,51 @@ a {
   font-size: 20px
 }
 
-.blogEntry {
-  padding: 20px;
-  border-style: dashed;
+/* Add this to your stylesheet */
 
+/* Style the overall blog list container */
+.blog-list {
+  max-width: 700px; /* Adjust the width as needed */
+  margin: 20px auto 20px 5px;
 }
+
+/* Style each blog entry */
+.blog-entry {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  margin-bottom: 20px; /* Space between entries */
+  padding: 15px;
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Style the title of each blog entry */
+.blog-entry-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Style the content of each blog entry */
+.blog-entry-content {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* Style the date of each blog entry */
+.blog-entry-date {
+  font-size: 0.85em;
+  color: #6c757d;
+}
+
+/* Style the edit and delete icons */
+.blog-entry-icons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.blog-entry-icons a {
+  color: #001937;
+  text-decoration: none;
+  margin-left: 30px;
+}
+
 
