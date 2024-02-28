@@ -1,5 +1,5 @@
 // controllers/blogListCtrl.js
-var Blog = require('../models/blogs'); // Ensure the path is correct
+var Blog = require('../../app_api/models/blogs'); // Ensure the path is correct
 
 // Function to handle the index route using promises
 const index = (req, res) => {
