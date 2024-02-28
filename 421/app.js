@@ -9,6 +9,8 @@ const indexRouter = require('./app_server/routes/index');
 const usersRouter = require('./app_server/routes/users');
 const blogAddRouter = require('./app_server/routes/blogAdd');
 const blogListRouter = require('./app_server/routes/blogList');
+const blogEditRouter = require('./app_server/routes/blogEdit');
+const blogDeleteRouter = require('./app_server/routes/blogDelete');
 const apiRouter = require('./app_api/routes/index');
 const app = express();
 
@@ -27,6 +29,8 @@ app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use('/blogAdd', blogAddRouter);
 app.use('/blogList', blogListRouter);
+app.use('/blogEdit', blogEditRouter);
+app.use('/blogDelete', blogDeleteRouter);
 
 
 
