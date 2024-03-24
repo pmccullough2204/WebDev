@@ -1,29 +1,14 @@
-const express = require ('express');
+const express = require('express');
 const router = express.Router();
-const ctrlLocations = require('../controllers/locations');
-const ctrlReviews = require('../controllers/reviews');
+const ctrlBlogs = require('../controllers/ctrlBlog');
 
-//locations
-router
-    .route('/locations')
-    .get(ctrlLocations.locationsListByDistance)
-    .post(ctrlLocations.locationsCreate);
-
-router
-    .route('/locations/:locationid')
-    .get(ctrlLocations.locationsReadOne)
-    .put(ctrlLocations.locationsUpdateOne)
-    .delete(ctrlLocations.locationsDeleteOne);
-
-//reviews
-router
-    .route('/locations/:locationid/reviews')
-    .post(ctrlReviews.reviewsCreate);
-
-router
-    .route('locations/:locationid/reviews/:reviewid')
-    .get(ctrlReviews.reviewsReadOne)
-    .put(ctrlReviews.reviewsUpdateOne)
-    .delete(ctrlReviews.reviewsDeleteOne);
+router.get('/', ctrlBlogs.home);
+router.get('/blogs', ctrlBlogs.getAllBlogs);
+router.get('/blogs/:id', ctrlBlogs.getBlogById);
+router.post('/blogs/create', ctrlBlogs.createBlog);
+router.get('/blogs/edit/:id', ctrlBlogs.updateBlogForm);
+router.post('/blogs/edit/:id', ctrlBlogs.updateBlogConfirm);
+router.get('/blogs/delete/:id', ctrlBlogs.deleteBlogConfirm);
+router.post('/blogs/delete/:id', ctrlBlogs.deleteBlog);
 
 module.exports = router;
