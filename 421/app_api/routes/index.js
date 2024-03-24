@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const ctrlBlogs = require('../controllers/ctrlBlog');
 
+// Routes definitions
+router.get('/', ctrlBlogs.home);
+router.get('/blogs', ctrlBlogs.getAllBlogs);
+// Remaining route definitions...
+
+
 router.get('/', ctrlBlogs.home);
 router.get('/blogs', ctrlBlogs.getAllBlogs);
 router.get('/blogs/:id', ctrlBlogs.getBlogById);
