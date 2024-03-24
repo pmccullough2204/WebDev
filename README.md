@@ -1,6 +1,6 @@
-# Patrick's Blogger Application
+## Patrick's Blogger Application
 
-## Updates
+### Updates
 Lab 2:
 - Added Add Blog
 - Added List Blog
@@ -24,7 +24,11 @@ Lab 3:
 
 - 
 
-## Running Instructions
+### Running Instructions
+
+create and populate config.env
+
+
 change to directory:
      `$ cd 421`
 
