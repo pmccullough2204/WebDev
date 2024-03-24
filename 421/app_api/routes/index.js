@@ -2,19 +2,14 @@ const express = require('express');
 const router = express.Router();
 const ctrlBlogs = require('../controllers/ctrlBlog');
 
-// Routes definitions
-router.get('/', ctrlBlogs.home);
-router.get('/blogs', ctrlBlogs.getAllBlogs);
-// Remaining route definitions...
+router.get('/blog', ctrlBlogs.getAllBlogs);
 
+router.get('/blog/:id', ctrlBlogs.getBlogById);
 
-router.get('/', ctrlBlogs.home);
-router.get('/blogs', ctrlBlogs.getAllBlogs);
-router.get('/blogs/:id', ctrlBlogs.getBlogById);
-router.post('/blogs/create', ctrlBlogs.createBlog);
-router.get('/blogs/edit/:id', ctrlBlogs.updateBlogForm);
-router.post('/blogs/edit/:id', ctrlBlogs.updateBlogConfirm);
-router.get('/blogs/delete/:id', ctrlBlogs.deleteBlogConfirm);
-router.post('/blogs/delete/:id', ctrlBlogs.deleteBlog);
+router.post('/blog', ctrlBlogs.createBlog); 
+
+router.put('/blog/:id', ctrlBlogs.updateBlog); 
+
+router.delete('/blog/:id', ctrlBlogs.deleteBlog); 
 
 module.exports = router;
