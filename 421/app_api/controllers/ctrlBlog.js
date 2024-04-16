@@ -2,7 +2,7 @@ const Blog = require('../../../../WebDev/421/models/blogs');
 const jwt = require('jsonwebtoken');
 
 exports.home = function(req,res) {
-    res.render('home', { title: 'Jillian Daggs Blog'});
+    res.render('home', { title: 'Patrick McCullough Blog'});
 };
 // Get all blogs
 module.exports.getAllBlogs = async (req, res) => {
