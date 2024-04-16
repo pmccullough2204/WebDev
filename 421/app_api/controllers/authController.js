@@ -1,11 +1,9 @@
-// authController.js
-
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User = require('../../models/User'); // Adjust the path as necessary
+const User = require('../../../../WebDev/421/models/User'); 
 
 const register = async (req, res) => {
-    const user = new User({ email: req.body.email, password: req.body.password });
+    const user = new User({ name: req.body.name, email: req.body.email, password: req.body.password });
     try {
         const savedUser = await user.save();
         res.status(201).send({ message: "User created successfully", userId: savedUser._id });
@@ -33,7 +31,7 @@ const login = async (req, res) => {
         }
 
         // Generate a token
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+        const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '24h' });
 
         res.status(200).send({ message: "Login successful", token });
     } catch (error) {
