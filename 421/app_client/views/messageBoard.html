@@ -1,0 +1,16 @@
+<div ng-controller="MessageBoardController" class="message-board">
+    <ul id="messageList" class="message-list">
+        <li ng-repeat="message in messages | orderBy:'$index':true" class="message">
+            <div class="message-author">{{ message.author }}</div>
+            <div class="message-text">{{ message.text }}</div>
+        </li>
+    </ul>
+
+    <div class="message-input">
+        <input type="text" ng-model="message.text" ng-keypress="($event.charCode === 13) && sendMessage()" placeholder="Type a message...">
+        <button ng-click="sendMessage()">Send</button>
+    </div>
+</div>
+
+
+

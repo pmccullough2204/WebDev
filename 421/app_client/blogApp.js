@@ -28,9 +28,38 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'views/register.html',
             controller: 'registerController'
         })
+        .when('/messages', {
+            templateUrl: 'views/messageBoard.html',
+            controller: 'MessageBoardController'
+        })
         .otherwise({
             redirectTo: '/blogs'
         });
+}]);
+
+angular.module('blogApp').factory('Socket', ['$rootScope', function($rootScope) {
+    var socket = io.connect();  // Connect to your Socket.IO server
+
+    return {
+        on: function(eventName, callback) {
+            socket.on(eventName, function() {
+                var args = arguments;
+                $rootScope.$apply(function() {
+                    callback.apply(socket, args);
+                });
+            });
+        },
+        emit: function(eventName, data, callback) {
+            socket.emit(eventName, data, function() {
+                var args = arguments;
+                $rootScope.$apply(function() {
+                    if (callback) {
+                        callback.apply(socket, args);
+                    }
+                });
+            });
+        }
+    };
 }]);
 
 // AuthService for managing authentication
@@ -79,6 +108,13 @@ app.factory('AuthService', ['$window', '$rootScope', function($window, $rootScop
             $window.localStorage.removeItem('blog-app-token');
             authToken = null;
             $rootScope.$broadcast('authChange');
+        },
+        getName: function() {
+            var token = this.getToken();
+            if (token) {
+                var decoded = parseToken(token);
+                return decoded.name;
+            }
         },
     };
 }]);
@@ -206,5 +242,52 @@ app.run(['$rootScope', 'AuthService', function($rootScope, AuthService) {
         AuthService.logout();
         window.location = '#!/login';
     };
+}]);
+
+app.factory('MessageService', ['$http', function($http) {
+    return {
+        getMessages: function() {
+            return $http.get('/api/messages');
+        },
+        postMessage: function(message) {
+            return $http.post('/api/messages', message);
+        }
+    };
+}]);
+
+app.controller('MessageBoardController', ['$scope', '$timeout', 'MessageService', 'Socket', 'AuthService', function($scope, $timeout, MessageService, Socket, AuthService) {
+    $scope.messages = [];
+    $scope.message = { text: '', author: '' };
+
+    MessageService.getMessages().then(function(response) {
+        $scope.messages = response.data;
+    });
+
+    $scope.sendMessage = function() {
+        if ($scope.message.text && AuthService.getUserEmail()) {
+            $scope.message.author = AuthService.getUserEmail();
+            MessageService.postMessage($scope.message).then(function(response) {
+                $scope.messages.unshift(response.data);
+                $scope.message.text = '';
+                scrollMessageListToBottom(); // Scroll to bottom after adding a new message
+            });
+        }
+    };
+
+    Socket.on('message', function(message) {
+        $scope.$evalAsync(function() {
+            if (!$scope.messages.some(msg => msg._id === message._id)) {
+                $scope.messages.unshift(message);
+                scrollMessageListToBottom(); // Scroll to bottom after receiving a new message
+            }
+        });
+    });
+
+    function scrollMessageListToBottom() {
+        $timeout(function() {
+            var messageList = document.getElementById('messageList');
+            messageList.scrollTop = messageList.scrollHeight;
+        });
+    }
 }]);
 
