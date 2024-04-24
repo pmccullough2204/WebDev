@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
         return res.status(403).send({ message: "No token provided." });
     }
 
-    // Attempt to split the header into the 'Bearer' keyword and the actual token
+
     const parts = bearerHeader.split(' ');
     if (parts.length !== 2 || parts[0] !== 'Bearer') {
         return res.status(403).send({ message: "Token format is 'Bearer <token>'." });

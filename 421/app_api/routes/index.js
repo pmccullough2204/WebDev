@@ -33,12 +33,12 @@ router.get('/messages', async (req, res) => {
 router.post('/messages', async (req, res) => {
     const message = new Message({
         text: req.body.text,
-        author: req.body.author // Ensure this is included in your client-side request
+        author: req.body.author
     });
     try {
         const newMessage = await message.save();
         res.status(201).json(newMessage);
-        req.app.get('io').emit('message', newMessage);  // Emit the message to all clients
+        req.app.get('io').emit('message', newMessage);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

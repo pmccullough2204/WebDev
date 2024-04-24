@@ -8,7 +8,7 @@ exports.home = function(req,res) {
 module.exports.getAllBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find().populate('blogAuthor', 'name');
-        res.json(blogs); // Return blogs as JSON
+        res.json(blogs);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
@@ -33,7 +33,7 @@ module.exports.createBlog = async (req, res) => {
         const newBlog = new Blog({
             blogTitle: req.body.blogTitle,
             blogText: req.body.blogText,
-            blogAuthor: req.userId // Ensure this matches the decoded token
+            blogAuthor: req.userId
         });
     
         const savedBlog = await newBlog.save();
@@ -76,7 +76,7 @@ module.exports.deleteBlog = async (req, res) => {
             return res.status(403).json({ error: 'Unauthorized to delete this blog' });
         }
         await Blog.findByIdAndDelete(blogId);
-        console.log("Blog successfully deleted", blogId);  // Confirm deletion in logs
+        console.log("Blog successfully deleted", blogId);
         res.json({ message: 'Blog successfully deleted' });
     } catch (error) {
         console.error("Error deleting blog:", error);

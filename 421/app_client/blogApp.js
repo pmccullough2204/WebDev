@@ -38,7 +38,7 @@ app.config(['$routeProvider', function($routeProvider) {
 }]);
 
 angular.module('blogApp').factory('Socket', ['$rootScope', function($rootScope) {
-    var socket = io.connect();  // Connect to your Socket.IO server
+    var socket = io.connect();
 
     return {
         on: function(eventName, callback) {
@@ -235,7 +235,7 @@ app.controller('registerController', ['$scope', '$http', '$location', 'AuthServi
     };
 }]);
 
-// Make AuthService globally accessible
+
 app.run(['$rootScope', 'AuthService', function($rootScope, AuthService) {
     $rootScope.AuthService = AuthService;
     $rootScope.logout = function() {
@@ -269,7 +269,7 @@ app.controller('MessageBoardController', ['$scope', '$timeout', 'MessageService'
             MessageService.postMessage($scope.message).then(function(response) {
                 $scope.messages.unshift(response.data);
                 $scope.message.text = '';
-                scrollMessageListToBottom(); // Scroll to bottom after adding a new message
+                scrollMessageListToBottom();
             });
         }
     };
@@ -278,7 +278,7 @@ app.controller('MessageBoardController', ['$scope', '$timeout', 'MessageService'
         $scope.$evalAsync(function() {
             if (!$scope.messages.some(msg => msg._id === message._id)) {
                 $scope.messages.unshift(message);
-                scrollMessageListToBottom(); // Scroll to bottom after receiving a new message
+                scrollMessageListToBottom();
             }
         });
     });
