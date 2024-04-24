@@ -33,6 +33,8 @@ app.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
+const socket = io();
+
 // AuthService for managing authentication
 app.factory('AuthService', ['$window', '$rootScope', function($window, $rootScope) {
     var authToken = null;
@@ -207,4 +209,3 @@ app.run(['$rootScope', 'AuthService', function($rootScope, AuthService) {
         window.location = '#!/login';
     };
 }]);
-
