@@ -226,14 +226,21 @@ app.controller('registerController', ['$scope', '$http', '$location', 'AuthServi
     $scope.newUser = {};
     $scope.register = function() {
         $http.post('/api/register', $scope.newUser).then(function(response) {
-            AuthService.saveToken(response.data.token);
-            $location.path('/blogs');
+            // Registration successful, now log in the user
+            $http.post('/api/login', $scope.newUser).then(function(response) {
+                AuthService.saveToken(response.data.token);
+                $location.path('/blogs');
+            }, function(error) {
+                console.error('Error during login after registration:', error);
+                $scope.errorMessage = "Login after registration failed: " + error.data.message;
+            });
         }, function(error) {
             console.error('Error during registration:', error);
             $scope.errorMessage = "Registration failed: " + error.data.message;
         });
     };
 }]);
+
 
 
 app.run(['$rootScope', 'AuthService', function($rootScope, AuthService) {
