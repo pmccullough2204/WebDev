@@ -1,7 +1,7 @@
-// blogs.js
+
 const mongoose = require('mongoose');
 
-// Define the schema for a blog entry
+
 const blogSchema = new mongoose.Schema({
     blogTitle: {
         type: String,
@@ -12,7 +12,7 @@ const blogSchema = new mongoose.Schema({
         required: true
     },
     blogAuthor: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to User model
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     }},
