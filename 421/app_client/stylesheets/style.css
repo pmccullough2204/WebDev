@@ -74,3 +74,55 @@ a {
   border-color: #000000;
 }
 
+.message-board {
+  background-color: #B5D7E4;
+  color: #001930;
+  padding: 20px;
+}
+
+.message-list {
+  list-style: none;
+  padding: 0;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message-author {
+  font-weight: bold;
+}
+
+.message-text {
+  background-color: #92C4D8;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.message-input {
+  margin-top: 20px;
+}
+
+.message-input input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #92C4D8;
+  color: #001930;
+}
+
+.message-input button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3E8DAC;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.message-input button:hover {
+  background-color: #22599C;
+}
+
+

@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -48,7 +49,7 @@ app.use(function(err, req, res, next) {
 
 const server = http.createServer(app);
 const io = socketIo(server);
-
+app.set('io', io);
 io.on('connection', (socket) => {
   console.log('A user connected');
 
